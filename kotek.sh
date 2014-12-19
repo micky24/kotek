@@ -150,7 +150,7 @@ IP=$(grep address /etc/network/interfaces | grep -v 127.0.0.1  | awk '{print $2}
 ifconfig tap_soft; sleep 5; 
 apt-get update; apt-get install dnsmasq -y
 echo interface=tap_soft >> /etc/dnsmasq.conf
-echo dhcp-range=tap_soft,192.168.91.50,192.168.91.60,12h >> /etc/dnsmasq.conf
+echo dhcp-range=tap_soft,192.168.91.10,192.168.91.250,6h >> /etc/dnsmasq.conf
 echo dhcp-option=tap_soft,3,192.168.91.1 >> /etc/dnsmasq.conf
 rm -rf  /etc/init.d/vpnserver
 cat > /etc/init.d/vpnserver <<END
