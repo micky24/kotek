@@ -3,7 +3,7 @@
 function s3 { sleep 3; }; 
 function t { cd ~; ./kotek.sh; }; 
 function i_t { executable=$1; yum update; yum install $1 -y; } ; function p_i { echo; echo -e "\033[1;37m$1 
-"; }; function e_e { i_t "zlib1g-dev libpam0g-dev libssl-dev openssl build-essential gcc" ; }; if [ ! -f /etc/debian_version ]; then p_i " Debian 6/7 only!"; s3; exit; fi; if [ $USER \
+"; }; function e_e { i_t "zlib1g-dev libpam0g-dev libssl-dev openssl build-essential gcc" ; }; s3; exit; fi; if [ $USER \
 != 'root' ]; then echo " Run as root!"; s3; exit; fi; function r_v { executable=$1; yum remove --purge $1 -y; }; function r_e { executable=$1; dpkg -l | grep -i "$1"; yum aut\
 oremove -y; }; function a_b { if [ $ADDPORT = 'q' ]; then echo "  Aborting!"; s3; t; fi; }; function a_t { read -p ") Enter addition port [123]|[q]: " -r ADDPORT; }; function o_v { function \
 w_v { if [ ! -e /etc/openvpn/ ]; then echo ") Install OpenVPN first"; s3; o_v; fi; }; function a_v { p2=`echo ${PORT:0:2}`; sed -i 's|;cipher AES-128-CBC   # AES|cipher AES-128-CBC   # AES|' \
