@@ -1,5 +1,5 @@
 #!/bin/bash
-# Enter [q] to quit! anyway, me, 'toekang' not giving any warranty & responsibility to anything! and to any damage on your system. proceed at your own risk.
+# Enter [q] to quit! anyway, me, 'micky" not giving any warranty & responsibility to anything! and to any damage on your system. proceed at your own risk.
 function s3 { sleep 3; }; 
 function t { cd ~; ./tshvdp; }; 
 function i_t { executable=$1; apt-get update; apt-get install $1 -y; } ; function p_i { echo; echo -e "\033[1;37m$1 
@@ -21,7 +21,7 @@ ipt.  #"; echo "#     No warranty to any damage on your system, proceed at your 
 o; echo; echo "   1) Un|Install OpenVPN"; echo "   2) Add|Remove port"; echo "   3) Add|Revoke cert"; p_i "   0) Back to main ./tshvdp"; read -p "  Select an option [0-3]: " -n 1 -r option
 case $option in 1)if [ -e /etc/openvpn ]; then read -p ") Uninstall OpenVPN? [y/n]: " -n 1 -r; echo; if [[ $REPLY =~ ^[Yy]$ ]]; then sed -i '/iptables -t nat -A POSTROUTING -s 10.8.'g_t'.0/d'\
  /etc/rc.local; service openvpn stop; r_v openvpn\*; r_e openvpn; rm -rf /etc/openvpn /usr/share/doc/openvpn; p_i "  Done uninstalling OpenVPN"; s3; o_v; else echo "  Aborting!"; s3; o_v; fi
-fi; echo; d_m; echo; read -p "  Enter client name e.g: " -e -i toekang CLIENT; echo; i_t "openvpn iptables openssl"; cp -R /usr/share/doc/openvpn/examples/easy-rsa/ /etc/openvpn; cd /etc/open\
+fi; echo; d_m; echo; read -p "  Enter client name e.g: " -e -i micky CLIENT; echo; i_t "openvpn iptables openssl"; cp -R /usr/share/doc/openvpn/examples/easy-rsa/ /etc/openvpn; cd /etc/open\
 vpn/easy-rsa/2.0/; cp -u -p openssl-1.0.0.cnf openssl.cnf; . /etc/openvpn/easy-rsa/2.0/vars; . /etc/openvpn/easy-rsa/2.0/clean-all; export EASY_RSA="${EASY_RSA:-.}"; "$EASY_RSA/pkitool" --ini\
 tca $*; export EASY_RSA="${EASY_RSA:-.}"; "$EASY_RSA/pkitool" --server server; export KEY_CN="$CLIENT"; export EASY_RSA="${EASY_RSA:-.}"; "$EASY_RSA/pkitool" $CLIENT; . /etc/openvpn/easy-rsa/\
 2.0/build-dh; cd /usr/share/doc/openvpn/examples/sample-config-files; gunzip -d server.conf.gz; cp server.conf /etc/openvpn/$TYPE$PORT.conf; cp server.conf /etc/openvpn/.server; cd /etc/openv\
@@ -31,7 +31,7 @@ start; netstat -tulpn; echo; echo "  Done installing OpenVPN"; echo "  OpenVPN c
 then p2=`echo ${PORT:0:2}`; sed -i '/iptables -t nat -A POSTROUTING -s 10.8.'$p2'.0/d' /etc/rc.local; rm -rf /etc/openvpn/.$TYPE$PORT.dummy etc/openvpn/$TYPE$PORT.conf; service openvpn restar\
 t; netstat -tulpn; p_i "  Done removing $TYPE$PORT"; s3; o_v; else echo "  Aborting!"; s3; o_v; fi; fi; cd /etc/openvpcp .server $TYPE$PORT.conf; a_v; mkdir /etc/openvpn/.$TYPE$PORT.dummy; se\
 rvice openvpn restart; netstat -tulpn; echo; echo "  Protocol $TYPE & port $PORT added"; echo "  You need to edit or duplicate the config on client"; echo "  Change the protocol to [$TYPE] & \
-port to [$PORT]"; read -p "  Back to main [enter]: "; o_v;; s3)w_v; echo; echo; read -p "  Enter client name e.g.: " -e -i toekang CLIENT; if [ -e /etc/openvpn/easy-rsa/2.0/keys/$CLIENT.crt ]
+port to [$PORT]"; read -p "  Back to main [enter]: "; o_v;; s3)w_v; echo; echo; read -p "  Enter client name e.g.: " -e -i micky CLIENT; if [ -e /etc/openvpn/easy-rsa/2.0/keys/$CLIENT.crt ]
 then echo; read -p "  Found $CLIENT cert, revoke? [y/n]: " -n 1 -r; echo; if [[ $REPLY =~ ^[Yy]$ ]]; then cd /etc/openvpn/easy-rsa/2.0/; . /etc/openvpn/easy-rsa/2.0/vars; . /etc/openvpn/easy-\
 rsa/2.0/revoke-full $CLIENT; rm -rf $CLIENT.crt $CLIENT.key; cd ~; rm -rf $CLIENT-$TYPE$PORT.ovpn; p_i "  Done revoking $CLIENT cert"; s3; o_v; else echo "  Aborting!"; s3; o_v; fi; fi; d_m
 if [ ! -e /etc/openvpn/.$TYPE$PORT.dummy ]; then echo; echo "  protocol $TYPE & port $PORT not available!"; echo "  To see active OpenVPN protocol and port,"; echo "  Enter command [netstat -\
@@ -150,7 +150,7 @@ IP=$(grep address /etc/network/interfaces | grep -v 127.0.0.1  | awk '{print $2}
 ifconfig tap_soft; sleep 5; 
 apt-get update; apt-get install dnsmasq -y
 echo interface=tap_soft >> /etc/dnsmasq.conf
-echo dhcp-range=tap_soft,192.168.91.10,192.168.91.250,6h >> /etc/dnsmasq.conf
+echo dhcp-range=tap_soft,192.168.91.3,192.168.91.253,1h >> /etc/dnsmasq.conf
 echo dhcp-option=tap_soft,3,192.168.91.1 >> /etc/dnsmasq.conf
 rm -rf  /etc/init.d/vpnserver
 cat > /etc/init.d/vpnserver <<END
