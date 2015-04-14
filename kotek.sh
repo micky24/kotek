@@ -1,7 +1,7 @@
 #!/bin/bash
 # Enter [q] to quit! anyway, me, 'micky" not giving any warranty & responsibility to anything! and to any damage on your system. proceed at your own risk.
 function s3 { sleep 3; }; 
-function t { cd ~; ./tshvdp; }; 
+function t { cd ~; ./kotek.sh; }; 
 function i_t { executable=$1; apt-get update; apt-get install $1 -y; } ; function p_i { echo; echo -e "\033[1;37m$1 
 "; }; function e_e { i_t "zlib1g-dev libpam0g-dev libssl-dev openssl build-essential gcc" ; }; if [ ! -f /etc/debian_version ]; then p_i " Debian 6/7 only!"; s3; exit; fi; if [ $USER \
 != 'root' ]; then echo " Run as root!"; s3; exit; fi; function r_v { executable=$1; apt-get remove --purge $1 -y; }; function r_e { executable=$1; dpkg -l | grep -i "$1"; apt-get aut\
@@ -18,7 +18,7 @@ cat $CLIENT.crt >> $CN; ov "</cert>"; ov "<key>"; cat $CLIENT.key >> $CN; ov "</
 ep address /etc/network/interfaces | grep -v 127.0.0.1  | awk '{print $2}' | grep -q '.' | head -1)"; IP=$(grep address /etc/network/interfaces | grep -v 127.0.0.1  | awk '{print $2}' | grep \
 '.' | head -1); clear; echo "################################################################################"; echo "#   OpenVPN With Additional Protocol & Port Selection Quick Installer Scr\
 ipt.  #"; echo "#     No warranty to any damage on your system, proceed at your own risk!      #"; echo "################################################################################"; ech\
-o; echo; echo "   1) Un|Install OpenVPN"; echo "   2) Add|Remove port"; echo "   3) Add|Revoke cert"; p_i "   0) Back to main ./tshvdp"; read -p "  Select an option [0-3]: " -n 1 -r option
+o; echo; echo "   1) Un|Install OpenVPN"; echo "   2) Add|Remove port"; echo "   3) Add|Revoke cert"; p_i "   0) Back to main ./kotek.sh"; read -p "  Select an option [0-3]: " -n 1 -r option
 case $option in 1)if [ -e /etc/openvpn ]; then read -p ") Uninstall OpenVPN? [y/n]: " -n 1 -r; echo; if [[ $REPLY =~ ^[Yy]$ ]]; then sed -i '/iptables -t nat -A POSTROUTING -s 10.8.'g_t'.0/d'\
  /etc/rc.local; service openvpn stop; r_v openvpn\*; r_e openvpn; rm -rf /etc/openvpn /usr/share/doc/openvpn; p_i "  Done uninstalling OpenVPN"; s3; o_v; else echo "  Aborting!"; s3; o_v; fi
 fi; echo; d_m; echo; read -p "  Enter client name e.g: " -e -i micky CLIENT; echo; i_t "openvpn iptables openssl"; cp -R /usr/share/doc/openvpn/examples/easy-rsa/ /etc/openvpn; cd /etc/open\
@@ -93,7 +93,7 @@ END
 clear; echo "########################################################################\
 ########"; echo "#        SoftetherVPN Server For Intel x86-32bit Quick Installer Script.       #"; echo "#      No warranty to any damage on your system, proceed at your own risk!     #"; echo "##################\
 ##############################################################"; echo; echo; echo "   1) Un|Install SoftetherVPN         2) Un|Install Using Local Bridge"; 
-echo; echo "   0) Back to main ./tshvdp"; echo; read -p "  Select an option [0-2]: " -n 1 -r option
+echo; echo "   0) Back to main ./kotek.sh"; echo; read -p "  Select an option [0-2]: " -n 1 -r option
 case $option in 1)if [ -e /etc/init.d/vpnserver ]; then read -p ") Uninstall SoftetherVPN? [y/n]: " -n 1 -r; echo; if [[ $REPLY =~ ^[Yy]$ ]]; then service vpnserver stop; rm -rf /usr/local/vpnserver /etc/init.d/v\
 pnserver; p_i "  Done uninstalling SoftetherVPN"; s3; s_1; else echo "  Aborting!"; s3; s_1; fi;  
 else
@@ -211,7 +211,7 @@ echo "# OpenSSH6.1p1-HPN13v14-6.6p1-OpenVPN-Dropbear-3Proxy-Squid Proxy-Softethe
 #########################################################################"; echo; echo; echo "   1) Un|Install OpenSSH_6.6p1           6) Softether VPN Server"; echo "   2) Un|Install OpenSSH6.1p\
 1-HPN13v14   7) Add|Remove OpenSSH addition port"; echo "   3) Un|Install Dropbear_2014.63        8) Add|Remove Dropbear addition port"; echo "   4) Un|Install 3Proxy                  9) Add|\
 Remove 3Proxy addition port"; echo "   5) Un|Install OpenVPN                 0) Server Speedtest"; echo "   S) Un|Install Squid Proxy";
-echo; echo "   ./tshvdp"; echo; read -p "  Select an option [0-9]|[ctrl+c]: " -n 1 -r option; case $option in 7)ad\
+echo; echo "   ./kotek.sh"; echo; read -p "  Select an option [0-9]|[ctrl+c]: " -n 1 -r option; case $option in 7)ad\
 p_ssh;; 8)adp_drb;; 9)adp_3pr;; 2)if [ -e /usr/local/src/openssh-6.6p1 ]; then echo "  Uninstall OpenSSH6.6p1 first!"; t; else if [ ! -e /usr/local/src/openssh-6.1p1 ]; then ssh_one; ssh -V
 p_i "  OpenSSH6.1p1-HPN13v14 installed & running on port $PORT"; s3; t; else res_def; t; fi; fi;; 1)if [ -e /usr/local/src/openssh-6.1p1 ]; then echo ") Uninstall OpenSSH6.1p1-HPN13v14 first!"
 s3; t; else if [ ! -e /usr/local/src/openssh-6.6p1 ]; then ssh_two; add_ports; service ssh restart; ssh -V; p_i "  OpenSSH6.6p1 installed & running on port $PORT"; s3; t; else res_def; t; fi
