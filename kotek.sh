@@ -150,8 +150,8 @@ IP=$(grep address /etc/network/interfaces | grep -v 127.0.0.1  | awk '{print $2}
 ifconfig tap_soft; sleep 5; 
 apt-get update; apt-get install dnsmasq -y
 echo interface=tap_soft >> /etc/dnsmasq.conf
-echo dhcp-range=tap_soft,192.168.91.3,192.168.91.253,1h >> /etc/dnsmasq.conf
-echo dhcp-option=tap_soft,3,192.168.91.1 >> /etc/dnsmasq.conf
+echo dhcp-range=tap_soft,10.8.0.3,10.8.0.253,1h >> /etc/dnsmasq.conf
+echo dhcp-option=tap_soft,3,10.8.0.1 >> /etc/dnsmasq.conf
 rm -rf  /etc/init.d/vpnserver
 cat > /etc/init.d/vpnserver <<END
 #!/bin/sh
@@ -166,7 +166,7 @@ cat > /etc/init.d/vpnserver <<END
 ### END INIT INFO
 DAEMON=/usr/local/vpnserver/vpnserver
 LOCK=/var/lock/subsys/vpnserver
-TAP_ADDR=192.168.91.1
+TAP_ADDR=10.8.0.1
 
 test -x \$DAEMON || exit 0
 case "\$1" in
