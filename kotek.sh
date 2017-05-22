@@ -100,7 +100,7 @@ else
 cd ~; apt-get update; 
 apt-get install build-essential expect -y
 if [ ! -e ~/sof ]; then
-wget -O sof http://www.softether-download.com/files/softether/v4.21-9613-beta-2016.04.24-tree/Linux/SoftEther_VPN_Server/32bit_-_Intel_x86/softether-vpnserver-v4.21-9613-beta-2016.04.24-linux-x86-32bit.tar.gz ; fi
+wget -O sof http://www.softether-download.com/files/softether/v4.22-9634-beta-2016.11.27-tree/Linux/SoftEther_VPN_Server/32bit_-_Intel_x86/softether-vpnserver-v4.22-9634-beta-2016.11.27-linux-x86-32bit.tar.gz ; fi
 tar zxf sof
 rm sof
 cd vpnserver
